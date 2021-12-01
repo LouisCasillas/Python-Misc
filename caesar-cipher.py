@@ -8,10 +8,12 @@ def caesar_cipher(o_string, shift):
         new_c = c
 
         if c.isalpha():
+            alphabet_ascii_start = 97
+
             if c.isupper():
-                new_c = chr(65 + (((ord(c) - 65) + shift) % 26))
-            else:
-                new_c = chr(97 + (((ord(c) - 97) + shift) % 26))
+                alphabet_ascii_start = 65
+
+            new_c = chr(alphabet_ascii_start + (((ord(c) - alphabet_ascii_start) + shift) % 26))
 
         cipher_text += new_c
 
@@ -19,3 +21,6 @@ def caesar_cipher(o_string, shift):
 
 print(caesar_cipher('hello', 5))
 print(caesar_cipher('hello', 26*29))
+
+print(caesar_cipher(caesar_cipher('hello', 5), -5))
+print(caesar_cipher('hello', -1 * (26*29)))
